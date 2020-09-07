@@ -10,39 +10,39 @@
 <body>
   <!--Barra de Navegador (Navbar)-->
   <nav class="navbar navbar-light bg-light">
-      <a href="index.html" class="navbar-brand mb-0 h1">Craft Beers</a>
+      <a href="/craftbeers" class="navbar-brand mb-0 h1">Craft Beers</a>
   </nav>
 
   <!--Final do navbar-->
 
   <!-- Formulário de Cadastro -->
-<form method="POST" class="center-form">
-      <h2 class="form-title">CADASTRO</h2>
+<form action="cadastro.php" method="POST" class="center-form">
+  <h2 class="form-title">CADASTRO</h2>
   <div class="row form-field" >
     <div class="col">
-      <input type="text" class="form-control" name="nome"placeholder="Nome" maxlenght="50"> 
+      <input type="text" name="nome" class="form-control" placeholder="Nome*" maxlenght="50" required> 
     </div>
   </div>
   <div class="row form-field">
     <div class="col-6">
-      <input type="date" class="form-control" placeholder="Data de Nascimento">
+      <input type="date" name="data_nasc" class="form-control" placeholder="Data de Nascimento*" required>
     </div>
     <div class="col-6">
-       <input type="text" name="num_tel"class="form-control" placeholder="Telefone" maxlenght="20">
+       <input type="text" name="num_telefone" class="form-control" placeholder="Telefone*" maxlenght="20" required>
     </div>
   </div>
   <div class="row form-field">
       <div class="col">
-        <input type="email" name="email" class="form-control" placeholder="Email"maxlenght="50">
+        <input type="email" name="email" class="form-control" placeholder="Email*" maxlenght="50" required>
       </div>
   </div>
   <div class="row form-field">
       <div class="col">
-        <input type="password" name="confSenha" class="form-control" placeholder="Senha" maxlenght="15">
+        <input type="password" name="senha" class="form-control" placeholder="Senha*" maxlenght="15" required>
       </div>
   </div>
   <div class="row justify-content-center">
-    <button type="button" class="btn btn-outline-primary">Cadastrar</button>  
+    <button type="submit" class="btn btn-outline-primary">Cadastrar</button>  
   </div>
 </form>
 <!-- JQuery, Bootstrap -->
