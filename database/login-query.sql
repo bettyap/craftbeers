@@ -1,0 +1,1 @@
+SELECT * FROM usuario WHERE email = 'elis@hotmail.com' AND senha = MD5(123);

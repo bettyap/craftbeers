@@ -84,3 +84,18 @@ input[type="text"] {
 .form-field{
 	margin-bottom: 16px;
 }
+/** Listagem de categorias **/
+.lista-categorias {
+	padding: 24px;
+	justify-content: center;
+	justify-items: center;
+	display: grid;
+	grid-gap: 30px;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.categoria-card {
+	width: 100%;
+	padding: 16px 12px;
+	text-align: center;
+}

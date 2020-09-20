@@ -21,36 +21,15 @@
   </nav>
   <!--Final do navbar-->
   <!-- Cadastrar categoria da cerveja -->
-<form class="center-form">
+<form action="criar-categoria.php" method="POST" class="center-form">
   <h2 class="form-title">NOVA CATEGORIA</h2>
-  <div class="row form-field" >
-    <div class="col">
-      <input type="text" class="form-control" placeholder="Nome">
-    </div>
-  </div>
-  <div class="row form-field">
     <div class="col-6">
-      <input type="date" class="form-control" placeholder="Data de Nascimento">
+        <input type="text" name="descricao" class="form-control" placeholder="Descrição">
     </div>
-    <div class="col-6">
-       <input type="tel" class="form-control" placeholder="Telefone">
-    </div>
-  </div>
-  <div class="row form-field">
-      <div class="col">
-        <input type="email" class="form-control" placeholder="Email">
-      </div>
-  </div>
-  <div class="row form-field">
-      <div class="col">
-        <input type="password" class="form-control" placeholder="Senha">
-      </div>
-  </div>
   <div class="row justify-content-center">
-    <button type="button" class="btn btn-outline-primary">Cadastrar</button>  
+    <button type="submit" class="btn btn-outline-primary">Cadastrar</button>  
   </div>
 </form>
-
 
 <!-- JQuery, Bootstrap -->
   <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>

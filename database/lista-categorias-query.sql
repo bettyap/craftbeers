@@ -1,0 +1,1 @@
+SELECT cat.id, cat.descricao FROM categoria AS cat INNER JOIN usuario AS usu ON usu.id = cat.usuario_id WHERE usu.id = 1;
