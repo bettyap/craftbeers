@@ -29,9 +29,9 @@ session_start();
   <?php 
     // if(isset($_SESSION['cadastro_sucesso'])):
   ?>
-  <div class="alert alert-success" role="alert">
+  <!-- <div class="alert alert-success" role="alert">
     Cadastro realizado com sucesso!
-  </div>
+  </div> -->
   <?php
     // endif;
     unset($_SESSION['cadastro_sucesso']);
@@ -52,7 +52,7 @@ session_start();
     <?php
     if(isset($_SESSION['nao_autenticado'])):
     ?>
-    <p>OCORREU UM ERRO USUARIO OU SENHA INVÁLIDA </p>
+    <p>OCORREU UM ERRO USUARIO OU SENHA INVÁLIDA </p> 
     <?php
     endif;
     unset($_SESSION['nao_autenticado']);

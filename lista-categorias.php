@@ -74,9 +74,9 @@
     ?>
 </div>
 </form>
-  <!--<div class="row justify-content-center">
-    <button type="submit" class="btn btn-outline-primary">Cadastrar</button>  
-  </div> -->
+<div class="row justify-content-center">
+  <a href="criar-categoria.html" class="btn btn-outline-primary">Nova Categoria</a>  
+</div>
 
 <!-- JQuery, Bootstrap -->
   <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>

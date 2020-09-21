@@ -19,7 +19,7 @@ include('verifica_login.php');
   </nav>
   <nav class="menu">      
       <a href="#">&times;</a>
-      <a href="#">Categoria</a>
+      <a href="lista-categorias.php">Categoria</a>
       <a href="#">Processos</a>
       <a href="logout.php">Sair</a> 
   </nav>

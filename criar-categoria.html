@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-  <!--Barra de Navegador (Navbar)  -->
+  <!--Barra de Navegador (Navbar)  
   <nav class="navbar navbar-light bg-light">
     <a href="#" class="btn-abrir">&#9776;</a>
     <a href="index.html" class="navbar-brand mb-0 h1">Craft Beers</a>   
@@ -18,17 +18,18 @@
       <a href="#">Categoria</a>
       <a href="#">Processos</a>
       <a href="logout.php">Sair</a> 
-  </nav>
+  </nav>-->
   <!--Final do navbar-->
   <!-- Cadastrar categoria da cerveja -->
 <form action="criar-categoria.php" method="POST" class="center-form">
   <h2 class="form-title">NOVA CATEGORIA</h2>
     <div class="col-6">
         <input type="text" name="descricao" class="form-control" placeholder="Descrição">
+    </div> 
+    <br>
+    <div class="row justify-content-center">
+       <button type="submit" class="btn btn-outline-primary">Cadastrar</button>  
     </div>
-  <div class="row justify-content-center">
-    <button type="submit" class="btn btn-outline-primary">Cadastrar</button>  
-  </div>
 </form>
 
 <!-- JQuery, Bootstrap -->
