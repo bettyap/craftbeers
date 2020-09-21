@@ -42,20 +42,18 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-  <!--Barra de Navegador (Navbar)  
+  <!--Barra de Navegador (Navbar)  -->
   <nav class="navbar navbar-light bg-light">
-    <a href="#" class="btn-abrir">&#9776;</a>
-    <a href="index.html" class="navbar-brand mb-0 h1">Craft Beers</a>   
+    <a href="index.php" class="navbar-brand mb-0 h1">Craft Beers</a>   
   </nav>
-  <nav class="menu">      
-      <a href="#">&times;</a>
-      <a href="#">Categoria</a>
+  <nav class="menu">
+      <a href="lista-categorias.php">Categoria</a>
       <a href="#">Processos</a>
       <a href="logout.php">Sair</a> 
-  </nav> -->
+  </nav>
   <!--Final do navbar-->
   <!-- Cadastrar categoria da cerveja -->
-<form class="center-form">
+<div class="center-form card card-padding">
   <h2 class="form-title">CATEGORIAS</h2>  
   <div class="lista-categorias">
     
@@ -73,9 +71,9 @@
       }
     ?>
 </div>
-</form>
 <div class="row justify-content-center">
   <a href="criar-categoria.html" class="btn btn-outline-primary">Nova Categoria</a>  
+</div>
 </div>
 
 <!-- JQuery, Bootstrap -->

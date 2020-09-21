@@ -14,7 +14,7 @@ session_start();
 <body>
   <!--Barra de Navegador (Navbar)-->
   <nav class="navbar navbar-light bg-light">
-    <a href="index.html" class="navbar-brand mb-0 h1">Craft Beers</a>
+    <a href="index.php" class="navbar-brand mb-0 h1">Craft Beers</a>
     <a class="btn btn-outline-success my-2 my-sm-0" href="cadastro.html">Registrar-se</a>
   </nav>
   <!--Final do navbar-->
