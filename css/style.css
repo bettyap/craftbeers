@@ -111,6 +111,9 @@ input[type="text"] {
 	padding: 16px 12px;
 	text-align: center;
 }
+.select {
+	width: 200px;
+}
 
 /* desktop media queries */
 @media only screen and (min-width: 950px) {
