@@ -1,0 +1,8 @@
+CREATE EVENT etapa_producao_2
+ON SCHEDULE EVERY 1 MINUTE
+STARTS CURRENT_TIMESTAMP
+ENDS CURRENT_TIMESTAMP + INTERVAL 10 MINUTE
+DO
+	UPDATE etapa_producao SET tempo_restante=(
+		SELECT DATE_SUB(tempo_restante, INTERVAL 1 minute) FROM etapa_producao WHERE id = 2
+	) WHERE id = 2;

@@ -1,0 +1,1 @@
+SELECT proc.id, proc.nome, proc.tempo FROM processo AS proc INNER JOIN usuario AS usu ON usu.id = proc.id_usuario WHERE usu.id = 1;
