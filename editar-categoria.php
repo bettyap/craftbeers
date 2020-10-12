@@ -1,6 +1,62 @@
 <?php 
 
+session_start();
+include('verifica_login.php');
 include('conexao.php');
+
+//Pega a categoria id atraves do parametro na url utilizando o GET
+$categoriaid = $_GET['id'];
+
+// criar uma variavel que recebe os dados da sessao
+$dados = $_SESSION['dados'];  
+
+$query_cat = "SELECT * FROM categoria WHERE id ='{$categoriaid}';";
+$result_cat = mysqli_query($conexao, $query_cat);
+$row_cat = mysqli_num_rows($result_cat);
+
+if($row_cat == 1) {
+
+  // pegar os dados
+  $dados_row_cat = mysqli_fetch_array($result_cat);
+
+  $dados_cat = [
+    'id' => $dados_row_cat[0],
+    'descricao' => $dados_row_cat[2],
+  ];
+
+} else {
+  echo "<p>Categoria não existente!</p>";
+  exit();
+}
+
+
+$query = "SELECT proc.id, proc.nome, proc.tempo FROM processo AS proc
+INNER JOIN usuario AS usu  ON usu.id = proc.id_usuario 
+INNER JOIN categoria AS cat ON cat.id = proc.id_categoria
+WHERE usu.id = '{$dados['id']}' AND cat.id = '{$categoriaid}';";
+
+$result = mysqli_query($conexao, $query);
+
+// criar um array vazio
+$dados = [];
+// cria uma variavel para controlar a posição/index
+$i = 0;
+
+// enquanto tiver rows no resultado, faça:
+// $dados_row vai ter o conteudo de cada linha
+while($dados_row = mysqli_fetch_array($result)) {
+  // Acessa a posicao $i de dados e preenche com os dados daquela linha
+  // onde $i começa como 0, e aumenta de 1 em 1 em dada volta do loop
+  $dados[$i] = [
+    // pega a primeira entrada do $dados_row, que é o id
+    'id' => $dados_row[0],
+    'nome' => $dados_row[1],
+    'tempo' => $dados_row[2],
+  ];
+
+  // soma +1 no $i
+  $i++;
+}
 
 ?>
 
@@ -29,52 +85,38 @@ include('conexao.php');
   <main class="content">
     <div class="card card-padding">
       <!-- Cadastrar categoria da cerveja -->
-      <form action="criar-categoria.php" method="POST" class="center-form">
+      <form action="post-editar-categoria.php" method="POST" class="categoria-form">
         <h2 class="form-title">EDITAR CATEGORIA</h2>
-        <div class="col-6">
-          <input type="text" name="descricao" class="form-control" placeholder="Descrição">
+        <div class="row form-field">
+          <div class="col-6">
+            <input type="text" name="descricao" class="form-control" value="<?php echo $dados_cat['descricao'] ?>">
+          </div>
         </div>
         <br>
+        <!-- Listagem dos Processos -->
+        <h4 class="form-title">Processos</h4>
+        <?php
+            foreach ($dados as $processo) {
+          ?>
+        <div class="row form-field">
+          <div class="col-6">
+            <input type="text" name="nome" class="form-control" placeholder="Nome"
+              value="<?php echo $processo['nome'] ?>">
+          </div>
+          <div class="col-6">
+            <input type="time" name="tempo" class="form-control" placeholder="Tempo"
+              value="<?php echo $processo['tempo'] ?>">
+          </div>
+        </div>
+        <?php
+            } 
+          ?>
+
         <div class="row justify-content-center">
-          <button type="submit" class="btn btn-outline-primary">Cadastrar</button>
+          <button type="submit" class="btn btn-outline-primary">Atualizar</button>
         </div>
       </form>
-      <!-- Listagem dos Processos -->
-      <form action="" method="POST" class="center-form">
-        <h2 class="form-title">PROCESSO</h2>
-        <div class="row form-field">
-          <div class="col-6">
-            <input type="text" name="nome" class="form-control" placeholder="Nome">
-          </div>
-          <div class="col-6">
-            <input type="time" name="tempo" class="form-control" placeholder="Tempo">
-          </div>
-        </div>
-        <div class="row form-field">
-          <div class="col-6">
-            <input type="text" name="nome" class="form-control" placeholder="Nome">
-          </div>
-          <div class="col-6">
-            <input type="time" name="tempo" class="form-control" placeholder="Tempo">
-          </div>
-        </div>
-        <div class="row form-field">
-          <div class="col-6">
-            <input type="text" name="nome" class="form-control" placeholder="Nome">
-          </div>
-          <div class="col-6">
-            <input type="time" name="tempo" class="form-control" placeholder="Tempo">
-          </div>
-        </div>
-        <div class="row form-field">
-          <div class="col-6">
-            <input type="text" name="nome" class="form-control" placeholder="Nome">
-          </div>
-          <div class="col-6">
-            <input type="time" name="tempo" class="form-control" placeholder="Tempo">
-          </div>
-        </div>
-      </form>
+      <br>
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Novo processo
@@ -103,7 +145,7 @@ include('conexao.php');
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-              <button type="button" class="btn btn-primary">Salvar</button>
+              <a href="criar-processo.php" button type="button" class="btn btn-primary">Salvar</a></button>
             </div>
           </div>
         </div>
