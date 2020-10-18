@@ -126,7 +126,7 @@ while($dados_row = mysqli_fetch_array($result)) {
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
+          <form action="criar-processo.php" method="POST" class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Novo Processo</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -134,6 +134,7 @@ while($dados_row = mysqli_fetch_array($result)) {
               </button>
             </div>
             <div class="modal-body">
+              <input type="hidden" name="categoria" value="<?php echo $categoriaid ?>">
               <div class="row form-field">
                 <div class="col-6">
                   <input type="text" name="nome" class="form-control" placeholder="Nome">
@@ -145,9 +146,9 @@ while($dados_row = mysqli_fetch_array($result)) {
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-              <a href="criar-processo.php" button type="button" class="btn btn-primary">Salvar</a></button>
+              <button type="submit" class="btn btn-primary">Salvar</button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
