@@ -87,6 +87,8 @@ while($dados_row = mysqli_fetch_array($result)) {
       <!-- Cadastrar categoria da cerveja -->
       <form action="post-editar-categoria.php" method="POST" class="categoria-form">
         <h2 class="form-title">EDITAR CATEGORIA</h2>
+        <input type="hidden" name="categoriaId" value="<?php echo $categoriaid ?>">
+
         <div class="row form-field">
           <div class="col-6">
             <input type="text" name="descricao" class="form-control" value="<?php echo $dados_cat['descricao'] ?>">
@@ -96,15 +98,16 @@ while($dados_row = mysqli_fetch_array($result)) {
         <!-- Listagem dos Processos -->
         <h4 class="form-title">Processos</h4>
         <?php
-            foreach ($dados as $processo) {
+            foreach ($dados as $index => $processo) {
           ?>
         <div class="row form-field">
+          <input type="hidden" name="processos[<?php echo $index ?>][id]" value="<?php echo $processo['id'] ?>">
           <div class="col-6">
-            <input type="text" name="nome" class="form-control" placeholder="Nome"
+            <input type="text" name="processos[<?php echo $index ?>][nome]" class="form-control" placeholder="Nome"
               value="<?php echo $processo['nome'] ?>">
           </div>
           <div class="col-6">
-            <input type="time" name="tempo" class="form-control" placeholder="Tempo"
+            <input type="time" name="processos[<?php echo $index ?>][tempo]" class="form-control" placeholder="Tempo"
               value="<?php echo $processo['tempo'] ?>">
           </div>
         </div>
