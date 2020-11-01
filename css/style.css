@@ -1,5 +1,9 @@
 body{
-    background: #F2B355;
+		background:url("../images/2563.jpg"), #cf7500;
+		background-position: center, center;
+		background-repeat: no-repeat, no-repeat;
+		background-size: 100%, 100%;
+		/* background:url("../images/2563.jpg") , #cf7500; */
 }
 section{
     text-align: center;
@@ -22,7 +26,7 @@ section{
     border: 8px solid #FFF;
     border-radius: 50%;
     margin: 15px;
-	box-shadow: 0 6px 12px #ccc;;   
+		box-shadow: 0 6px 12px #ccc;
 }
 .form-title{
 	border-bottom: 1px solid grey;
@@ -105,6 +109,16 @@ input[type="text"] {
 	grid-gap: 30px;
 	grid-template-columns: 1fr 1fr 1fr;
 }
+/* Relógio-*/
+/* .relogio {
+	width: 250px;
+	height: 250px;
+	display: inline-flex;
+	border: 8px solid #FFF;
+	border-radius: 50%;
+	margin: 15px;
+	box-shadow: 0 6px 12px #ccc;
+} */
 
 .categoria-card {
 	width: 100%;

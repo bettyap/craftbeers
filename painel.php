@@ -3,7 +3,7 @@ session_start();
 include('verifica_login.php');
 ?>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br">  
 
 <head>
   <meta charset="UTF-8">
@@ -11,6 +11,7 @@ include('verifica_login.php');
   <title>Craft Beers</title>
   <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script type="text/javascript" src="js/timer.js"></script>
 </head>
 
 <body>
@@ -29,8 +30,8 @@ include('verifica_login.php');
     <div class="card card-padding">
       <h2>Olá, <?php echo $_SESSION['usuario'];?></h2>
       <!-- Produção -->
-      <!-- <form action="#" method="POST" class="center-form">
-        <h2 class="form-title">PRODUÇÃO</h2>
+      <form action="#" method="POST" class="center-form">
+        <h2 class="form-title">Categoria</h2>
         <div class="row form-field">
           <div class="col-12">
             <div class="form-group">
@@ -47,7 +48,36 @@ include('verifica_login.php');
             </div>
           </div>
         </div>
-      </form> -->
+      </form>
+      <form action="#" method="POST" class="center-form">
+        <h2 class="form-title">PRODUÇÃO</h2>
+        <div class="row form-field">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="categoria">Processo:</label>
+              <select class="custom-select select" name="categoria">
+                <option value="pilsen">Fermentação</option>
+                <option value="teste">Moagem</option>
+                <option value="teste2">Broagem</option>
+              </select>
+            </div>
+            <br>
+            <div class="relogio">
+              <div id="timer">
+                <span id="hours"></span>Horas
+                <span id="minutes"></span>Minutos
+                <span id="seconds"></span>Segundos
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <button type="submit" class="btn btn-outline-primary">Recomeçar</button>
+              <button type="submit" class="btn btn-outline-primary">Pausar Processo</button>
+              <button type="submit" class="btn btn-outline-primary">Próximo Processo</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
     </div>
   </main>
 
