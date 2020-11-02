@@ -51,7 +51,7 @@
 
   $result_evento = mysqli_query($conexao, $query_evento);
 
-  var_dump($result_evento, mysqli_error($conexao));
+  header('Location: painel.php');
   exit();
 
 ?>
