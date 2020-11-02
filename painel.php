@@ -188,16 +188,10 @@
               <br>
 
               <p>
-                Tempo restante do processo: <?php echo $etapa['tempo_restante'] ?>
+                Tempo restante do processo: 
+                <strong id="timer" data-tempo-inicial="<?php echo $etapa['tempo_restante'] ?>"></strong>
               </p>
 
-              <!-- <div class="relogio">
-                <div id="timer">
-                  <span id="hours"></span>Horas
-                  <span id="minutes"></span>Minutos
-                  <span id="seconds"></span>Segundos
-                </div>
-              </div> -->
               <div class="row justify-content-center">
                 <button formaction="painel-reinicia-processo.php"
                   type="submit" 
@@ -230,6 +224,7 @@
   </main>
 
   <!-- JQuery, Bootstrap -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/timer.js"></script>
