@@ -95,9 +95,8 @@ while($dados_row = mysqli_fetch_array($result)) {
             <input type="text" name="descricao" class="form-control" value="<?php echo $dados_cat['descricao'] ?>">
           </div>
           <div class="col-6 d-flex justify-content-end">
-            <button
-              formaction="excluir-processo.php?categoriaid=<?php echo $categoriaid?>&id=<?php echo  $processo["id"] ?>"
-              type="submit" class="btn btn-excluir" style="margin-right: 8px">
+            <button formaction="excluir-categoria.php?categoriaId=<?php echo $categoriaid?>" type="submit"
+              class="btn btn-excluir" style="margin-right: 8px">
               Excluir Categoria
             </button>
           </div>

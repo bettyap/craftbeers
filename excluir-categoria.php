@@ -3,13 +3,17 @@
   session_start();
   include('conexao.php');
 
-  $id = $_REQUEST['id'];
+  $categoriaId = $_GET['categoriaId'];
+  
 
-  if($id !=null)
-  {
-    $query = "DELETE FROM categoria WHERE id=42";
-    mysqli_query($query) or die ($query."<br>".mysqli_error());
-    header('Location:lista-categorias.php');
-  } 
-  var_dump($query);
-  ?>
+    $query = 
+    "DELETE FROM processo WHERE id_categoria = {$categoriaId}; 
+     DELETE FROM categoria WHERE id = {$categoriaId};
+     ";
+     
+    $result = mysqli_multi_query($conexao, $query); 
+
+
+    header("Location: lista-categorias.php");
+    exit();
+    ?>
