@@ -41,7 +41,7 @@
   $query_evento = "
     CREATE EVENT etapa_producao_{$id_etapa_producao}
     ON SCHEDULE EVERY 1 MINUTE
-    STARTS CURRENT_TIMESTAMP
+    STARTS CURRENT_TIMESTAMP + INTERVAL 1 MINUTE
     ENDS CURRENT_TIMESTAMP + INTERVAL '{$processo['tempo']}' HOUR_SECOND
     DO
     UPDATE etapa_producao SET tempo_restante=(

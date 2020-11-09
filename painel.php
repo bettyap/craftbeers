@@ -195,18 +195,22 @@
 
             <p>
               Tempo restante do processo:
-              <strong id="timer" data-tempo-inicial="<?php echo $etapa['tempo_restante'] ?>"></strong>
+              <strong id="timer" data-pausado="<?php echo $pausado ?>"
+                data-tempo-inicial="<?php echo $etapa['tempo_restante'] ?>" />
             </p>
 
             <div class="row justify-content-center">
-              <button formaction="painel-reinicia-processo.php" type="submit"
+              <button id="btn-reinicia" formaction="painel-reinicia-processo.php" type="submit"
                 class="btn btn-sucesso btn-outline-primary" style="margin-right: 8px">
-                Cancelar
-              </button>
-              <button formaction="<?php echo $pausado ? 'painel-resume-processo.php' : 'painel-pausa-processo.php' ?>"
+                <?php echo $etapa['tempo_restante'] === '00:00:00' ? 'Finalizar' : 'Cancelar' ?>
+              </button>´
+              <?php if ($etapa['tempo_restante'] !== '00:00:00') { ?>
+              <button id="btn-pausa"
+                formaction="<?php echo $pausado ? 'painel-resume-processo.php' : 'painel-pausa-processo.php' ?>"
                 type="submit" class="btn btn-sucesso btn-outline-primary" style="margin-right: 8px">
                 <?php echo $pausado ? 'Continuar' : 'Pausar' ?>
               </button>
+              <?php } ?>
               <?php if ($tem_proximo_processo) { ?>
               <button formaction="painel-proximo-processo.php" type="submit"
                 class="btn btn-sucesso btn-outline-primary">

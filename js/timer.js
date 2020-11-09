@@ -7,6 +7,8 @@ if (timer) {
 
 function carregaTimer () {
   var tempoInicial = timer.dataset.tempoInicial;
+  var estaPausado = timer.dataset.pausado;
+
   var tempo = tempoInicial.split(':');
   var hora = Number(tempo[0]);
   var minuto = Number(tempo[1]);
@@ -14,22 +16,26 @@ function carregaTimer () {
 
   mostraTempo(hora, minuto, segundo);
   
-  var interval = setInterval(() => {
-    preencheTempo();
-  }, 1000);
+
+  if (!estaPausado) {
+    var interval = setInterval(() => {
+      preencheTempo();
+    }, 1000);
+  }
     
   function preencheTempo () {
-    if (segundo - 1 <= 0) {
+    if (segundo === 0) {
       segundo = 59;
 
+      if (hora - 1 < 0 && minuto - 1 < 0) {
+        emiteLembrete();
+        return;
+      }
+
       if (minuto - 1 <= 0) {
-        if (hora - 1 < 0) {
-          emiteLembrete();
-          return;
-        }
   
-        hora -= 1;
-        minuto = 59;
+        hora = (hora === 0) ? 0 : hora - 1;
+        minuto = (minuto === 0) ? 0 : (hora > 0) ? 59 : 0;
       } else {
         minuto -= 1;
       }
@@ -70,6 +76,8 @@ function carregaTimer () {
   
   function emiteLembrete () {
     clearInterval(interval);
+    document.querySelector('#btn-reinicia').textContent = 'Finalizar';
+    document.querySelector('#btn-pausa').style.display = 'none';
     swal(
       "Processo Finalizado!",
       `Para seguir para o próximo processo clique em 'Próximo', 
