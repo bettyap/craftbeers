@@ -1,0 +1,1 @@
+DROP EVENT etapa_producao_2
