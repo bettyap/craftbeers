@@ -81,7 +81,7 @@ function carregaTimer () {
     swal(
       "Processo Finalizado!",
       `Para seguir para o próximo processo clique em 'Próximo', 
-      ou para começar outra produção clique em 'Reiniciar'`,
+      ou para começar outra produção clique em 'Cancelar'`,
       "success"
     );
   }
