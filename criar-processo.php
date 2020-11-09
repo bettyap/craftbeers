@@ -1,10 +1,11 @@
 <?php
 
   session_start();
+  include('verifica_login.php');
   include('conexao.php');
 
   // criar uma variavel que recebe os dados da sessao
-  $dados = $_SESSION['dados'];
+  $dados = $_SESSION['user'];
 
   $nome = mysqli_real_escape_string($conexao, $_POST['nome']);
   $tempo = mysqli_real_escape_string($conexao, $_POST['tempo']);

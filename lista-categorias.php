@@ -1,6 +1,7 @@
 <?php
 
   session_start();
+  include('verifica_login.php');
   include('conexao.php');
   include('db-lista-categoria.php');
 ?>
@@ -14,6 +15,7 @@
   <title>Craft Beers</title>
   <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/botoes.css">
 </head>
 
 <body>
@@ -48,7 +50,7 @@
                 ?>
         </div>
         <div class="row justify-content-center">
-          <a href="criar-categoria.html" class="btn btn-outline-primary">Nova Categoria</a>
+          <a href="criar-categoria.php" class="btn btn-sucesso btn-outline-primary">Nova Categoria</a>
         </div>
       </div>
   </main>

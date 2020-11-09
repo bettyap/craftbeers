@@ -8,7 +8,7 @@ include('conexao.php');
 $categoriaid = $_GET['id'];
 
 // criar uma variavel que recebe os dados da sessao
-$dados = $_SESSION['dados'];  
+$dados = $_SESSION['user'];  
 
 $query_cat = "SELECT * FROM categoria WHERE id ='{$categoriaid}';";
 $result_cat = mysqli_query($conexao, $query_cat);
@@ -69,6 +69,7 @@ while($dados_row = mysqli_fetch_array($result)) {
   <title>Craft Beers</title>
   <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/botoes.css">
 </head>
 
 <body>
@@ -89,9 +90,16 @@ while($dados_row = mysqli_fetch_array($result)) {
         <h2 class="form-title">EDITAR CATEGORIA</h2>
         <input type="hidden" name="categoriaId" value="<?php echo $categoriaid ?>">
 
-        <div class="row form-field">
+        <div class="row row-cat form-field">
           <div class="col-6">
             <input type="text" name="descricao" class="form-control" value="<?php echo $dados_cat['descricao'] ?>">
+          </div>
+          <div class="col-6 d-flex justify-content-end">
+            <button
+              formaction="excluir-processo.php?categoriaid=<?php echo $categoriaid?>&id=<?php echo  $processo["id"] ?>"
+              type="submit" class="btn btn-excluir" style="margin-right: 8px">
+              Excluir Categoria
+            </button>
           </div>
         </div>
         <br>
@@ -100,60 +108,70 @@ while($dados_row = mysqli_fetch_array($result)) {
         <?php
             foreach ($dados as $index => $processo) {
           ?>
-        <div class="row form-field">
+        <div class="row row-cat form-field">
           <input type="hidden" name="processos[<?php echo $index ?>][id]" value="<?php echo $processo['id'] ?>">
-          <div class="col-6">
+          <div class="col-5">
             <input type="text" name="processos[<?php echo $index ?>][nome]" class="form-control" placeholder="Nome"
               value="<?php echo $processo['nome'] ?>">
           </div>
-          <div class="col-6">
+          <div class="col-5">
             <input type="time" name="processos[<?php echo $index ?>][tempo]" class="form-control" placeholder="Tempo"
               value="<?php echo $processo['tempo'] ?>">
+          </div>
+          <div class="col-2">
+            <button
+              formaction="excluir-processo.php?categoriaid=<?php echo $categoriaid?>&id=<?php echo  $processo["id"] ?>"
+              type="submit" class="btn btn-excluir" style="margin-right: 8px">
+              Excluir
+            </button>
           </div>
         </div>
         <?php
             } 
           ?>
-
-        <div class="row justify-content-center">
-          <button type="submit" class="btn btn-outline-primary">Atualizar</button>
+        <!-- Button trigger modal -->
+        <div class="row row-cat justify-content-center">
+          <button type="button" class="btn btn-segundo btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Novo processo
+          </button>
         </div>
-      </form>
-      <br>
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Novo processo
-      </button>
+        <!-- Botão atualizar -->
+        <div class="row row-cat justify-content-center">
+          <button type="submit" class="btn btn-sucesso btn-outline-primary">Atualizar</button>
+        </div>
+    </div>
+    </form>
+    <br>
 
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <form action="criar-processo.php" method="POST" class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Novo Processo</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <input type="hidden" name="categoria" value="<?php echo $categoriaid ?>">
-              <div class="row form-field">
-                <div class="col-6">
-                  <input type="text" name="nome" class="form-control" placeholder="Nome">
-                </div>
-                <div class="col-6">
-                  <input type="time" name="tempo" class="form-control" placeholder="Tempo">
-                </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <form action="criar-processo.php" method="POST" class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Novo Processo</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" name="categoria" value="<?php echo $categoriaid ?>">
+            <div class="row form-field">
+              <div class="col-6">
+                <input type="text" name="nome" class="form-control" placeholder="Nome">
+              </div>
+              <div class="col-6">
+                <input type="time" name="tempo" class="form-control" placeholder="Tempo">
               </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-              <button type="submit" class="btn btn-primary">Salvar</button>
-            </div>
-          </form>
-        </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </div>
+        </form>
       </div>
+    </div>
     </div>
   </main>
 

@@ -1,6 +1,6 @@
 <?php
   // criar uma variavel que recebe os dados da sessao
-  $dados = $_SESSION['dados'];  
+  $dados = $_SESSION['user'];  
 
   $query = "SELECT cat.id, cat.descricao FROM categoria AS cat INNER JOIN usuario AS usu ON usu.id = cat.usuario_id WHERE usu.id = '{$dados['id']}';";
 

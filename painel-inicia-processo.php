@@ -4,7 +4,7 @@
   include('verifica_login.php');
   include('conexao.php');
 
-  $dados = $_SESSION['dados']; 
+  $dados = $_SESSION['user']; 
 
   $categoriaId = $_POST['categoria_id'];
   $processoId = $_POST['processo_id'];

@@ -4,7 +4,7 @@
   include('conexao.php');
   include('db-lista-categoria.php');
 
-  $dados = $_SESSION['dados'];  
+  $dados = $_SESSION['user'];  
 
   $query_etapa_producao = "
     SELECT ep.id, pr.id, cat.id, pr.nome, ep.tempo_restante FROM etapa_producao as ep
@@ -55,7 +55,7 @@
 
 ?>
 <!DOCTYPE html>
-<html lang="pt-br">  
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
@@ -63,6 +63,7 @@
   <title>Craft Beers</title>
   <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/botoes.css">
 </head>
 
 <body>
@@ -79,65 +80,66 @@
 
   <main class="content">
     <div class="card card-padding">
-      <h2>Olá, <?php echo $_SESSION['dados']['nome'];?></h2>
+      <h2>Olá, <?php echo $_SESSION['user']['nome'];?></h2>
       <!-- Produção -->
 
       <?php if (!$existe_etapa_producao) { ?>
 
-        <form action="<?php echo $form_action ?>" method="POST" class="center-form">
-          <h2 class="form-title">Minha produção</h2>
-          <p>Para iniciar a produção da sua cerveja, primeiro escolha a categoria de cerveja e o processo pelo qual será iniciado.</p>
-          <div class="row form-field">
-            <div class="col-12">
-              <?php if (!$categoria_escolhida) { ?>
-                <div class="form-group">
-                  <label for="categoria">Escolha a categoria:</label>
-                  <select class="custom-select select" name="categoria_escolhida" required>
-                    <?php
+      <form action="<?php echo $form_action ?>" method="POST" class="center-form">
+        <h2 class="form-title">Produção</h2>
+        <p>Para iniciar a produção da sua cerveja, primeiro escolha a categoria de cerveja e o processo pelo qual será
+          iniciado.</p>
+        <div class="row form-field">
+          <div class="col-12">
+            <?php if (!$categoria_escolhida) { ?>
+            <div class="form-group">
+              <label for="categoria">Escolha a categoria:</label>
+              <select class="custom-select select" name="categoria_escolhida" required>
+                <?php
                       foreach ($categorias as $categoria) {
                     ?>
-                    <option value="<?php echo $categoria['id'] ?>">
-                      <?php echo $categoria['descricao'] ?>
-                    </option>
-                    <?php
+                <option value="<?php echo $categoria['id'] ?>">
+                  <?php echo $categoria['descricao'] ?>
+                </option>
+                <?php
                       }
                     ?>
-                  </select>
-                  <button type="submit" class="btn btn-primary">Ok</button>
-                </div>
-              <?php } ?>
+              </select>
+              <button type="submit" class="btn btn-sucesso btn-primary">Ok</button>
+            </div>
+            <?php } ?>
 
-              <?php if ($categoria_escolhida) { ?>
-                <?php if (count($processos) > 0) { ?>
-                  <input type="hidden" name="categoria_id" value="<?php echo $categoria_escolhida ?>"/>
-                  <div class="form-group">
-                    <label for="categoria">Escolha o processo da onde começar:</label>
-                    <select class="custom-select select" name="processo_id" required>
-                      <?php
+            <?php if ($categoria_escolhida) { ?>
+            <?php if (count($processos) > 0) { ?>
+            <input type="hidden" name="categoria_id" value="<?php echo $categoria_escolhida ?>" />
+            <div class="form-group">
+              <label for="categoria">Escolha o processo da onde começar:</label>
+              <select class="custom-select select" name="processo_id" required>
+                <?php
                         foreach ($processos as $processo) {
                       ?>
-                        <option value="<?php echo $processo['id'] ?>">
-                          <?php echo $processo['nome'] ?>
-                        </option>
-                      <?php
+                <option value="<?php echo $processo['id'] ?>">
+                  <?php echo $processo['nome'] ?>
+                </option>
+                <?php
                         }
                       ?>
-                    </select>
-                  </div>
-                  <br/>
-                  <div class="row justify-content-center">
-                    <button type="submit" class="btn btn-outline-primary">Iniciar Produção</button>
-                  </div>
-                <?php } else { ?>
-                  <p>Crie primeiro um processo para essa categoria, antes de iniciar a produção!</p>
-                <?php } ?>
-              <?php } ?>
+              </select>
             </div>
+            <br />
+            <div class="row justify-content-center">
+              <button type="submit" class="btn btn-sucesso btn-outline-primary">Iniciar Produção</button>
+            </div>
+            <?php } else { ?>
+            <p>Crie primeiro um processo para essa categoria, antes de iniciar a produção!</p>
+            <?php } ?>
+            <?php } ?>
           </div>
-        </form>
+        </div>
+      </form>
       <?php } else { ?>
 
-        <?php 
+      <?php 
           $etapa_producao_row = mysqli_fetch_array($result_etapa_producao);
 
           $etapa = [
@@ -154,8 +156,12 @@
 
           $result = mysqli_query($conexao, $query);
           $row = mysqli_fetch_array($result);
+          
+          $pausado = false;
 
-          $pausado = $row[10] !== 'ENABLED';
+          if ($row) {
+            $pausado = $row[10] !== 'ENABLED';
+          }
 
           $query = "
             SELECT proc.id, proc.tempo FROM processo AS proc
@@ -168,57 +174,49 @@
 
         ?>
 
-        <form method="POST" class="center-form">
-          <input type="hidden" name="etapa_producao_id" value="<?php echo $etapa['etapa_producao_id'] ?>" />
-          <input type="hidden" name="processo_id" value="<?php echo $etapa['processo_id'] ?>" />
-          <input type="hidden" name="categoria_id" value="<?php echo $etapa['categoria_id'] ?>" />
-          <?php if ($tem_proximo_processo) { ?>
-          <?php 
+      <form method="POST" class="center-form">
+        <input type="hidden" name="etapa_producao_id" value="<?php echo $etapa['etapa_producao_id'] ?>" />
+        <input type="hidden" name="processo_id" value="<?php echo $etapa['processo_id'] ?>" />
+        <input type="hidden" name="categoria_id" value="<?php echo $etapa['categoria_id'] ?>" />
+        <?php if ($tem_proximo_processo) { ?>
+        <?php 
             $proximo_processo = mysqli_fetch_array($result_processo);
           ?>
-            <input type="hidden" name="proximo_processo_id" value="<?php echo $proximo_processo[0] ?>" />
-            <input type="hidden" name="proximo_processo_tempo" value="'<?php echo $proximo_processo[1] ?>'" />
-          <?php } ?>
-          <h2 class="form-title">Produção em andamento</h2>
-          <div class="row form-field">
-            <div class="col-12">
-              <div class="form-group">
-                <h5>Processo atual: <?php echo $etapa['processo_nome'] ?></h5>
-              </div>
-              <br>
+        <input type="hidden" name="proximo_processo_id" value="<?php echo $proximo_processo[0] ?>" />
+        <input type="hidden" name="proximo_processo_tempo" value="'<?php echo $proximo_processo[1] ?>'" />
+        <?php } ?>
+        <h2 class="form-title">Produção em andamento</h2>
+        <div class="row form-field">
+          <div class="col-12">
+            <div class="form-group">
+              <h5>Processo atual: <?php echo $etapa['processo_nome'] ?></h5>
+            </div>
+            <br>
 
-              <p>
-                Tempo restante do processo: 
-                <strong id="timer" data-tempo-inicial="<?php echo $etapa['tempo_restante'] ?>"></strong>
-              </p>
+            <p>
+              Tempo restante do processo:
+              <strong id="timer" data-tempo-inicial="<?php echo $etapa['tempo_restante'] ?>"></strong>
+            </p>
 
-              <div class="row justify-content-center">
-                <button formaction="painel-reinicia-processo.php"
-                  type="submit" 
-                  class="btn btn-outline-primary"
-                  style="margin-right: 8px"
-                >
-                  Reiniciar
-                </button>
-                <button formaction="<?php echo $pausado ? 'painel-resume-processo.php' : 'painel-pausa-processo.php' ?>"
-                  type="submit" 
-                  class="btn btn-outline-primary"
-                  style="margin-right: 8px"
-                >
-                  <?php echo $pausado ? 'Resumir' : 'Pausar' ?>
-                </button>
-                <?php if ($tem_proximo_processo) { ?>
-                  <button formaction="painel-proximo-processo.php"
-                    type="submit" 
-                    class="btn btn-outline-primary"
-                  >
-                    Próximo
-                  </button>
-                <?php } ?>
-              </div>
+            <div class="row justify-content-center">
+              <button formaction="painel-reinicia-processo.php" type="submit"
+                class="btn btn-sucesso btn-outline-primary" style="margin-right: 8px">
+                Cancelar
+              </button>
+              <button formaction="<?php echo $pausado ? 'painel-resume-processo.php' : 'painel-pausa-processo.php' ?>"
+                type="submit" class="btn btn-sucesso btn-outline-primary" style="margin-right: 8px">
+                <?php echo $pausado ? 'Continuar' : 'Pausar' ?>
+              </button>
+              <?php if ($tem_proximo_processo) { ?>
+              <button formaction="painel-proximo-processo.php" type="submit"
+                class="btn btn-sucesso btn-outline-primary">
+                Próximo
+              </button>
+              <?php } ?>
             </div>
           </div>
-        </form>
+        </div>
+      </form>
       <?php } ?>
     </div>
   </main>

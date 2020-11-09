@@ -36,14 +36,13 @@
         'data_nasc' => $dados_row[1],   
     ];
 
-      $_SESSION['usuario'] = $usuario;
-      $_SESSION['dados'] = $dados;
-      header('Location: painel.php');
-      exit();
+    $_SESSION['user'] = $dados;
+    header('Location: painel.php');
+    exit();
   } else {
-      $_SESSION['nao_autenticado'] = true;
-      header('Location: index.php');
-      exit();
+    $_SESSION['nao_autenticado'] = true;
+    header('Location: index.php');
+    exit();
   }
 
 ?>
