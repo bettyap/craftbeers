@@ -1,0 +1,137 @@
+.btn-primeiro {
+  color: #f4f4f4;
+  background-color: transparent;
+  background-image: none;
+  border-color: #f0a500;
+}
+
+.btn-primeiro:hover {
+  color: #fff;
+  background-color: #f0a500;
+  border-color: #f0a500;
+}
+
+.btn-primeiro:focus, .btn-primeiro.focus {
+  box-shadow: 0 0 0 0.2rem rgba(56, 218, 169, 0.5);
+}
+
+.btn-primeiro.disabled, .btn-primeiro:disabled {
+  color: #f0a500;
+  background-color: transparent;
+}
+
+.btn-primeiro:not(:disabled):not(.disabled):active, .btn-primeiro:not(:disabled):not(.disabled).active,
+.show > .btn-primeiro.dropdown-toggle {
+  color: #fff;
+  background-color: #f0a500;
+  border-color: #f0a500;
+}
+
+.btn-primeiro:not(:disabled):not(.disabled):active:focus, .btn-primeiro:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primeiro.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(56, 218, 169, 0.5);
+}
+/* Botão Registrar-se */
+.btn-sucesso {
+  color: #f0a500;
+  background-color: transparent;
+  background-image: none;
+  border-color: #f0a500;
+}
+
+.btn-sucesso:hover {
+  color: #fff;
+  background-color: #f0a500;
+  border-color: #f0a500;
+}
+
+.btn-sucesso:focus, .btn-sucesso.focus {
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+}
+
+.btn-sucesso.disabled, .btn-sucesso:disabled {
+  color: #f0a500;
+  background-color: transparent;
+}
+
+.btn-sucesso:not(:disabled):not(.disabled):active, .btn-sucesso:not(:disabled):not(.disabled).active,
+.show > .btn-sucesso.dropdown-toggle {
+  color: #fff;
+  background-color: #f0a500;
+  border-color: #f0a500;
+}
+
+.btn-sucesso:not(:disabled):not(.disabled):active:focus, .btn-sucesso:not(:disabled):not(.disabled).active:focus,
+.show > .btn-sucesso.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+}
+
+/* Botã Secundario modal*/
+
+.btn-segundo {
+  color: #f4f4f4;
+  background-color: #f0a500;
+  border-color: #f0a500;
+}
+
+.btn-segundo:hover {
+  color: #f4f4f4;
+  background-color: #cf7500;
+  border-color: #cf7500;
+}
+
+.btn-segundo:focus, .btn-segundo.focus {
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
+}
+
+.btn-segundo.disabled, .btn-segundo:disabled {
+  color: #fff;
+  background-color: #cf7500;
+  border-color: #cf7500;
+}
+
+.btn-segundo:not(:disabled):not(.disabled):active, .btn-segundo:not(:disabled):not(.disabled).active,
+.show > .btn-segundo.dropdown-toggle {
+  color: #fff;
+  background-color: #cf7500;
+  border-color: #cf7500;
+}
+
+.btn-segundo:not(:disabled):not(.disabled):active:focus, .btn-segundo:not(:disabled):not(.disabled).active:focus,
+.show > .btn-segundo.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
+}
+/* Botão Excluir  */
+btn-excluir {
+  color: #f4f4f4;
+  background-color: transparent;
+  background-image: none;
+  border-color: red;
+}
+
+.btn-excluir:hover {
+  color: #fff;
+  background-color:red;
+  border-color: red;
+}
+
+.btn-excluir:focus, .btn-excluir.focus {
+  box-shadow: 0 0 0 0.2rem rgba(56, 218, 169, 0.5);
+}
+
+.btn-excluir.disabled, .btn-excluir:disabled {
+  color: red;
+  background-color: transparent;
+}
+
+.btn-excluir:not(:disabled):not(.disabled):active, .btn-excluir:not(:disabled):not(.disabled).active,
+.show > .btn-excluir.dropdown-toggle {
+  color: #fff;
+  background-color: red;
+  border-color: red;
+}
+
+.btn-excluir:not(:disabled):not(.disabled):active:focus, .btn-excluir:not(:disabled):not(.disabled).active:focus,
+.show > .btn-excluir.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(56, 218, 169, 0.5);
+}
